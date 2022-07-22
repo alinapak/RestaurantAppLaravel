@@ -1,6 +1,6 @@
 # Restaurant Creation App
 
-##Description
+## Description
 This is Restaurant App backend part. Restaurants and Dishes API was created by using Laravel library.
 ## Launch
 1. Install by cloning: type `git clone https://github.com/alinapak/RestaurantAppLaravel.git` in `htdocs` folder;
