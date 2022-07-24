@@ -15,7 +15,6 @@ class ApiDishController extends Controller
      */
     public function index()
     {
-        // return Dish::all();
         $dish = Dish::with('restaurant')->get();
         return $dish;
     }
@@ -41,7 +40,11 @@ class ApiDishController extends Controller
         $dish = new Dish();
         $dish->title = $request->input('title');
         $dish->price = $request->input('price');
-        $dish->image = $request->input('image');
+        if ($request->file('file') == null) {
+            $dish->file = "";
+        }else if ($request->file('file') !== null) {
+            $dish->file = $request->file('file')->store('images');  
+        }  
         $dish->restaurant_id = $request->input('restaurant_id');
         return $dish->save();
     }
@@ -79,7 +82,11 @@ class ApiDishController extends Controller
         $dish= Dish::find($id);
         $dish->title = $request->input('title');
         $dish->price = $request->input('price');
-        $dish->image = $request->input('image');
+        if ($request->file('file') == null) {
+            $dish->file = "";
+        }else if ($request->file('file') !== null) {
+            $dish->file = $request->file('file')->store('images');  
+        }
         $dish->restaurant_id = $request->input('restaurant_id');
         return $dish->save();
     }

@@ -17,10 +17,6 @@ class ApiRestaurantController extends Controller
     public function index()
     {
         return Restaurant::all();
-        // $rest = Restaurant::with('dishes')->get();
-        // return $rest;
-
-
     }
 
     /**

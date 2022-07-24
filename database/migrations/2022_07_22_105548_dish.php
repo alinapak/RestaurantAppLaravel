@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('price');
-            $table->string('image');
+            $table->string('file')->nullable();
             $table->unsignedBigInteger('restaurant_id')->nullable();
             $table->foreign('restaurant_id')->references('id')->on('restaurants')->onUpdate('cascade')->nullOnDelete();
             $table->timestamps();
