@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiControllers\AdminController;
 use App\Http\Controllers\ApiControllers\ApiDishController;
 use App\Http\Controllers\ApiControllers\ApiRestaurantController;
 use App\Http\Controllers\ApiControllers\AuthController;
@@ -31,4 +32,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
 });
+// Route::controller((AdminController::class), function () {
+//     Route::post('admin','admin');
+// });
 

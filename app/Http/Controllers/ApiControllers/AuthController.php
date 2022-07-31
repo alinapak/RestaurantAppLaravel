@@ -30,8 +30,11 @@ class AuthController extends Controller
                 'message' => 'Unauthorized',
             ], 401);
         }
-
+// backendine admino validacija, jei user is admin, login veikia
+      if (Auth::user()->isAdministrator()) {
         $user = Auth::user();
+        // $u_roles = $user->roles;
+        // error_log($u_roles);
         return response()->json([
                 'status' => 'success',
                 'user' => $user,
@@ -40,8 +43,19 @@ class AuthController extends Controller
                     'type' => 'bearer',
                 ]
             ]);
-
     }
+// // visu useriu prijungimas
+    $user = Auth::user();
+    return response()->json([
+            'status' => 'success',
+            'user' => $user,
+            'authorisation' => [
+                'token' => $token,
+                'type' => 'bearer',
+            ]
+        ]);
+
+}
 
     public function register(Request $request){
         $request->validate([
@@ -66,15 +80,6 @@ class AuthController extends Controller
                 'type' => 'bearer',
             ]
         ]);
-        // $credentials = $request->only('email', 'password');
-
-        // $token = Auth::attempt($credentials);
-        // if (!$token) {
-        //     return response()->json([
-        //         'status' => 'error',
-        //         'message' => 'Unauthorized',
-        //     ], 401);
-        // }
     }
 
     public function logout()
